@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                ecgo "hello world"
+                echo "hello world"
             }
         }
         stage('Test') {
