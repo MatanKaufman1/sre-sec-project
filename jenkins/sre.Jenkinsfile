@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                echo "hello world"
+                echo 'Testing hello workd image'
+                
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                echo 'this is matan test'
+                echo 'this is matan test in dev env4'
             }
         }
         stage('Deploy') {
