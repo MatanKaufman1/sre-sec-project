@@ -11,7 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                echo 'this is matan test in dev env2'
+                echo 'this is matan test in dev env3'
             }
         }
         stage('Deploy') {
