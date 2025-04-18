@@ -11,6 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                echo 'this is matan test'
             }
         }
         stage('Deploy') {
