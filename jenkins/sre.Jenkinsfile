@@ -1,6 +1,7 @@
 pipeline {
-    agent runner
-    
+    agent {
+        label 'runner'
+    }
     parameters {
         string(name: 'HELM_RELEASE_NAME', defaultValue: 'prometheus', description: 'Name for the Helm release')
         string(name: 'HELM_CHART', defaultValue: 'prometheus-community/kube-prometheus-stack', description: 'Helm chart to install')
