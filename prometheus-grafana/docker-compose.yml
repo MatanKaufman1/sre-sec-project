@@ -21,6 +21,10 @@ services:
     depends_on:
       - prometheus
     restart: always
+    volumes:
+      - ./grafana/provisioning/datasources/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/etc/grafana/dashboards
     networks:
       - monitoring
 
