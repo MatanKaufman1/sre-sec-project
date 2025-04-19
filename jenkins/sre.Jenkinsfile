@@ -4,30 +4,34 @@ pipeline {
     }
 
     stages {
-        stage ( 'Install yamlLinter')
+        stage('Install yamlLinter') {
             steps {
                 script {
                     sh '''
                         sudo apt update
                         sudo apt install yamllint
-                        '''
+                    '''
                 }
             }
-         stage ('check yaml files')
+        }
+
+        stage('Check yaml files') {
             steps {
-                scripts {
+                script {
                     sh '''
                         yamllint -r .
-                        '''
+                    '''
                 }
             }
+        }
+
         stage('Install Prometheus, Grafana, and Node Exporter') {
             steps {
                 script {
                     sh '''
                         cd prometheus-grafana/
                         docker compose up -d --build
-                        '''
+                    '''
                 }
             }
         }
