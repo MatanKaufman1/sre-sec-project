@@ -15,7 +15,7 @@ pipeline {
                     sh '''
                         ls -l
                         cd prometheus-grafana/
-                        docker compose up -d --build'
+                        docker compose up -d --build
                         '''
                 }
             }
