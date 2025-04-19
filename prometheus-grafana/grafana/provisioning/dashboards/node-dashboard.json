@@ -22432,7 +22432,7 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
+                "type": "Prometheus",
                 "uid": "${datasource}"
               },
               "expr": "irate(node_netstat_Udp_OutDatagrams{instance=\"$node\",job=\"$job\"}[$__rate_interval])",
