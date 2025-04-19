@@ -12,7 +12,11 @@ pipeline {
         stage('Install Prometheus, Grafana, and Node Exporter') {
             steps {
                 script {
-                    sh 'docker compose up -d --build'
+                    sh '''
+                        ls -l
+                        cd prometheus-grafana/
+                        docker compose up -d --build'
+                        '''
                 }
             }
         }
