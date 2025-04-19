@@ -23,8 +23,7 @@ services:
       - prometheus
     restart: always
     volumes:
-      - ./grafana/provisioning/datasources/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml  # Correct volume for datasources
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards  # Correct volume for dashboards
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
     networks:
       - monitoring
 
