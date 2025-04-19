@@ -14,12 +14,11 @@ pipeline {
                 }
             }
         }
-
         stage('Check yaml files') {
             steps {
                 script {
                     sh '''
-                        yamllint -r .
+                        yamllint .
                     '''
                 }
             }
