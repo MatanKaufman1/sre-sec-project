@@ -3,7 +3,7 @@ pipeline {
         label 'runner'
     }
     parameters {
-        string(name: 'HELM_RELEASE_NAME', defaultValue: 'prometheus', description: 'Name for the Helm release')
+        string(name: 'HELM_RELEASE_NAME', defaultValue: 'prometheus-grafana', description: 'Name for the Helm release')
         string(name: 'HELM_CHART', defaultValue: 'prometheus-community/kube-prometheus-stack', description: 'Helm chart to install')
         string(name: 'K8S_NAMESPACE', defaultValue: 'monitoring', description: 'Kubernetes namespace to deploy to')
         string(name: 'GRAFANA_ADMIN_PASSWORD', defaultValue: 'admin', description: 'Grafana admin password')
@@ -29,6 +29,7 @@ pipeline {
                 
                 # Verify installation
                 minikube status
+                alias kubectl="minikube kubectl --"
                 kubectl cluster-info
                 '''
             }
@@ -66,13 +67,7 @@ pipeline {
                   --set grafana.adminPassword=${GRAFANA_ADMIN_PASSWORD} \
                   --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false \
                   --set prometheus.prometheusSpec.serviceMonitorSelector.matchLabels.release=${HELM_RELEASE_NAME}
-                
-                # Wait for deployment to complete
-                echo "Waiting for prometheus operator deployment..."
-                kubectl -n ${K8S_NAMESPACE} wait --for=condition=available --timeout=300s deployment/${HELM_RELEASE_NAME}-kube-prometheus-operator || true
-                
-                echo "Waiting for grafana deployment..."
-                kubectl -n ${K8S_NAMESPACE} wait --for=condition=available --timeout=300s deployment/${HELM_RELEASE_NAME}-grafana || true
+
                 '''
             }
         }
