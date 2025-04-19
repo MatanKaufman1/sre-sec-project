@@ -9,7 +9,7 @@ pipeline {
                 script {
                     sh '''
                         sudo apt update
-                        sudo apt install yamllint
+                        sudo apt install yamllint -y
                     '''
                 }
             }
