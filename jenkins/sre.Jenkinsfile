@@ -13,7 +13,6 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        ls -l
                         cd prometheus-grafana/
                         docker compose up -d --build
                         '''
