@@ -70,10 +70,10 @@ pipeline {
 
     post {
     success {
-        slackSend(channel: '#succeeded-build', color: 'good', message: "✅ Build #${env.BUILD_NUMBER} succeeded.")
+        slackSend(channel: '#succeeded-build', color: 'good', message: "✅ Build #succeeded.")
     }
     failure {
-        slackSend(channel: '#devops-alerts', color: 'danger', message: "❌ Build #${env.BUILD_NUMBER} failed.")
+        slackSend(channel: '#devops-alerts', color: 'danger', message: "❌ Build #failed.")
     }
 }
 }
