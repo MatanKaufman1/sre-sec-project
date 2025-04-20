@@ -9,10 +9,10 @@ This repository contains a setup for monitoring and visualization using
 
 The project is divided into two main components:
 
-### Jenkins: This part manages your CI/CD pipeline using Docker.
+Jenkins: This part manages your CI/CD pipeline using Docker.
+Prometheus-Grafana: This section contains configurations for Prometheus, Grafana, and AlertManager.
 
-### Prometheus-Grafana: This section contains configurations for Prometheus, Grafana, and AlertManager.
-
+---
 .
 ├── jenkins
 │   ├── docker-compose.yml
