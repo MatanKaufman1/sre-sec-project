@@ -4,8 +4,25 @@ pipeline {
     }
 
     stages {
-
-
+        stage('Install yamlLinter') {
+            steps {
+                script {
+                    sh '''
+                        sudo apt update
+                        sudo apt install yamllint -y
+                    '''
+                }
+            }
+        }
+        stage('Check yaml files') {
+            steps {
+                script {
+                    sh '''
+                        yamllint .
+                    '''
+                }
+            }
+        }
         stage('Install Prometheus, Grafana, and Node Exporter') {
             steps {
                 script {
