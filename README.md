@@ -1,7 +1,13 @@
 
 # Prometheus, Grafana, Jenkins Integration for Host and Jenkins Monitoring
 
-This project provides an automated monitoring infrastructure setup using **Prometheus** and **Grafana** with **Jenkins CI/CD** integration. It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
+This project provides an automated monitoring infrastructure setup using Prometheus and Grafana with Jenkins CI/CD integration. It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
+
+## Table of Contents
+
+1. [Pipeline Flow Overview](#pipeline-flow-overview)
+2. [Installation & Setup](#installation-setup)
+3. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
 
 ## Project Structure
 
@@ -16,17 +22,17 @@ This solution automates the setup and monitoring of infrastructure components wi
 
 The project is divided into three main components:
 
-1. **Vagrant:**
-   - Provisions the Linux VM to serve as the host environment.
-   - Ensures a consistent, repeatable environment for Jenkins, Prometheus, and Grafana.
+- **Vagrant**:
+  - Provisions the Linux VM to serve as the host environment.
+  - Ensures a consistent, repeatable environment for Jenkins, Prometheus, and Grafana.
 
-2. **Jenkins:**
-   - Manages your CI/CD pipeline using Docker.
-   - Automates the setup of monitoring tools (Prometheus, Grafana, AlertManager, Node Exporter).
+- **Jenkins**:
+  - Manages your CI/CD pipeline using Docker.
+  - Automates the setup of monitoring tools (Prometheus, Grafana, AlertManager, Node Exporter).
 
-3. **Prometheus-Grafana:**
-   - Contains configurations for Prometheus, Grafana, AlertManager, and dashboards.
-   - Provides monitoring, visualization, and alerting.
+- **Prometheus-Grafana**:
+  - Contains configurations for Prometheus, Grafana, AlertManager, and dashboards.
+  - Provides monitoring, visualization, and alerting.
 
 ### Project Structure:
 
