@@ -1,0 +1,42 @@
+---
+groups:
+  - name: node_exporter_alerts
+    rules:
+      - alert: NodeExporterDown
+        expr: up{job="node_exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: >
+            Node Exporter is down on {{ $labels.instance }}
+          description: >
+            No metrics received from Node Exporter on
+            {{ $labels.instance }}
+
+  - name: jenkins_alerts
+    rules:
+      - alert: JenkinsJobFailure
+        expr: >
+          jenkins_job_last_build_duration_seconds{result="FAILURE"} > 0
+        for: 1m
+        labels:
+          severity: high
+        annotations:
+          summary: >
+            Jenkins job has failed!
+          description: >
+            The job {{ $labels.job }} has failed.
+            Check logs for details.
+
+  - name: node-exporter-alerts
+    rules:
+      - alert: HighCPU
+        expr: >
+          100 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m])) *100> 90
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU on {{ $labels.instance }}"
+          description: "CPU > 90% for 1 min."

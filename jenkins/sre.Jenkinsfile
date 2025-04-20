@@ -1,23 +1,71 @@
 pipeline {
-    agent any
-
+    agent {
+        label 'runner'
+    }
     stages {
-        stage('Build') {
+        stage('Install yamlLinter') {
             steps {
-                echo 'Testing hello workd image'
-                
+                script {
+                    sh '''
+                        sudo apt update
+                        sudo apt install yamllint -y
+                    '''
+                }
             }
         }
-        stage('Test') {
+        stage('Check yaml files') {
             steps {
-                echo 'Testing..'
-                echo 'this is matan test in dev env4'
+                script {
+                    sh 'yamllint .'
+                }
             }
         }
-        stage('Deploy') {
+        stage('Install checkov') {
             steps {
-                echo 'Deploying....'
+                script {
+                    sh '''
+                        sudo apt update
+                        sudo apt install python3-pip -y
+                        sudo pip install --upgrade pip
+                        sudo pip install checkov
+                    '''
+                }
+            }
+        }
+
+        stage('Run checkov') {
+            steps {
+                script {
+                sh 'echo test'
+                }
+            }
+        }
+
+        stage('Install Prometheus, Grafana, and Node Exporter') {
+            steps {
+                script {
+                    sh '''
+                        cd prometheus-grafana/
+                        docker compose up -d --build
+                    '''
+                }
+            }
+        }
+
+        stage('Check Running Containers') {
+            steps {
+                script {
+                    sh 'docker ps'
+                }
             }
         }
     }
+    post {
+    success {
+        slackSend(channel: '#all-sre', color: 'good', message: " Pipeline succeeded.")
+    }
+    failure {
+        slackSend(channel: '#all-sre', color: 'danger', message: " Pipeline failed.")
+    }
+}
 }
