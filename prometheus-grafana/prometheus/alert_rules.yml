@@ -29,14 +29,4 @@ groups:
             The job {{ $labels.job }} has failed.
             Check logs for details.
 
-  - name: node-exporter-alerts
-    rules:
-      - alert: HighCPUUsage
-        expr:
-          100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 90
-        for: 1m
-        labels:
-          severity: warning
-        annotations:
-          summary: "High CPU usage on {{ $labels.instance }}"
-          description: "CPU usage is above 90% for more than 1 minute."
+cription: "CPU usage is above 90% for more than 1 minute."
