@@ -184,7 +184,4 @@ To use this dashboard, import it into Grafana by following these steps:
    ```bash
    docker restart grafana
    ```
-
-This method ensures that users can take advantage of an established, ready-to-use dashboard while also following your project's installation instructions.
-
 ---
