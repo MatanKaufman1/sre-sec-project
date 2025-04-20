@@ -9,7 +9,7 @@ This project provides an automated monitoring infrastructure setup using Prometh
 3. [Pipeline Flow Overview](#pipeline-flow-overview)
 4. [Installation & Setup](#installation--setup)
 5. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
-6. 
+
 ## Project Overview
 
 This solution automates the setup and monitoring of infrastructure components with a focus on:
@@ -93,7 +93,7 @@ After the pipeline execution:
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 
@@ -165,7 +165,7 @@ The pipeline will:
 
 ---
 
-### 📊 Creating Dashboards in Grafana:
+### Creating Dashboards in Grafana:
 
 You can use a pre-built **Node Exporter Full** dashboard from Grafana's community repository. This dashboard provides comprehensive system monitoring, including CPU, memory, disk, and network usage metrics.
 
