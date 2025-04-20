@@ -69,10 +69,10 @@ pipeline {
     }
     post {
     success {
-        slackSend(channel: '# all-sre', color: 'good', message: " Pipeline succeeded.")
+        slackSend(channel: '${SLACK_CHANNEL}', color: 'good', message: " Pipeline succeeded.")
     }
     failure {
-        slackSend(channel: '# all-sre', color: 'danger', message: " Pipeline failed.")
+        slackSend(channel: '${SLACK_CHANNEL}', color: 'danger', message: " Pipeline failed.")
     }
 }
 }
