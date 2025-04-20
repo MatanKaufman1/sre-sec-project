@@ -1,17 +1,16 @@
-
 # Prometheus, Grafana, Jenkins Integration for Host and Jenkins Monitoring
 
 This project provides an automated monitoring infrastructure setup using Prometheus and Grafana with Jenkins CI/CD integration. It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
 
 ## Table of Contents
 
-1. [Pipeline Flow Overview](#pipeline-flow-overview)
-2. [Installation & Setup](#installation-setup)
-3. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
+1. [Project Overview](#project-overview)
+2. [Project Structure](#project-structure)
+3. [Pipeline Flow Overview](#pipeline-flow-overview)
+4. [Installation & Setup](#installation-setup)
+5. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
 
-## Project Structure
-
-### Project Overview
+## Project Overview
 
 This solution automates the setup and monitoring of infrastructure components with a focus on:
 
@@ -34,7 +33,9 @@ The project is divided into three main components:
   - Contains configurations for Prometheus, Grafana, AlertManager, and dashboards.
   - Provides monitoring, visualization, and alerting.
 
-### Project Structure:
+## Project Structure
+
+
 
 ```
 ├── jenkins
