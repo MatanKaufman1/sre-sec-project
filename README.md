@@ -12,6 +12,7 @@ This project provides an automated monitoring infrastructure setup using Prometh
 6. [Monitoring Components](#monitoring-components)
 7. [Alert Rules Configuration](#alert-rules-configuration)
 8. [Data Collection Flow](#data-collection-flow)
+9. [Contact Information](#Contact-Information)
 
 ## Project Overview
 
@@ -293,3 +294,10 @@ Here’s how the monitoring pipeline works:
     Grafana (port 3000) displays real-time dashboards.
 
 All services run in Docker containers within a shared Docker network, ensuring portability and consistency across environments.
+
+---
+## Contact Information
+
+    Maintainer: Matan Kaufman
+    Email: matankaufman1@gmail.com
+
