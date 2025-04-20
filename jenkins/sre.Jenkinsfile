@@ -23,6 +23,28 @@ pipeline {
                 }
             }
         }
+        stage('install checkov') {
+            steps {
+               script {
+                sh '''
+                    apt update
+                    apt install python3-pip -y
+                    pip install --upgrade pip
+                    pip install checkov
+                    '''
+               }
+            }
+        }
+        stage ('run checkov') {
+            steps {
+                script {
+                    sh '''
+                          echo this run checkov
+                          '''
+                }
+            }
+        }
+
         stage('Install Prometheus, Grafana, and Node Exporter') {
             steps {
                 script {
