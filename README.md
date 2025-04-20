@@ -1,10 +1,8 @@
 
 # Prometheus, Grafana, Jenkins Integration with Host Monitoring and Slack Alerts
 
-This repository contains a setup for monitoring and visualization using
-**Prometheus**, **Grafana**, and **Jenkins**, with an additional focus on monitoring the
-**VM host** itself. The setup also includes **Alertmanager** for triggering **Slack notifications** in case of alerts.
-
+This project provides an automated monitoring infrastructure setup using Prometheus and Grafana with Jenkins CI/CD integration.
+It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
 ## Project Structure
 
 The project is divided into two main components:
@@ -12,21 +10,32 @@ The project is divided into two main components:
 Jenkins: This part manages your CI/CD pipeline using Docker.
 Prometheus-Grafana: This section contains configurations for Prometheus, Grafana, and AlertManager.
 
+Project Overview
+This solution automates the setup and monitoring of infrastructure components with a focus on:
+
+Automated deployment of the entire monitoring stack
+Jenkins monitoring using Prometheus and CloudBees disk usage plugins
+Real-time alerts delivered to Slack
+Configuration validation through CI/CD pipeline
+
 ---
 .
 ├── jenkins
-│   ├── docker-compose.yml
-│   └── sre.Jenkinsfile
+│   ├── docker-compose.yml
+│   └── sre.Jenkinsfile
 ├── prometheus-grafana
-│   ├── alertmanager
-│   │   └── alertmanager.yml
-│   ├── docker-compose.yml
-│   ├── grafana
-│   │   └── provisioning
-│   └── prometheus
-│       ├── alert_rules.yml
-│       └── prometheus.yml
-└── README.md
+│   ├── alertmanager
+│   │   └── alertmanager.yml
+│   ├── docker-compose.yml
+│   ├── grafana
+│   │   └── provisioning
+│   └── prometheus
+│       ├── alert_rules.yml
+│       └── prometheus.yml
+├── README.md
+└── vagrant
+    └── Vagrantfile
+---
 
 ## Prerequisites
 
