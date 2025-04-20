@@ -3,6 +3,10 @@ pipeline {
         label 'runner'
     }
 
+    environment {
+        SLACK_CHANNEL = '#all-sre'
+    }
+
     stages {
         stage('Install yamlLinter') {
             steps {
@@ -14,33 +18,32 @@ pipeline {
                 }
             }
         }
+
         stage('Check yaml files') {
             steps {
                 script {
+                    sh 'yamllint .'
+                }
+            }
+        }
+
+        stage('Install checkov') {
+            steps {
+                script {
                     sh '''
-                        yamllint .
+                        sudo apt update
+                        sudo apt install python3-pip -y
+                        sudo pip install --upgrade pip
+                        sudo pip install checkov
                     '''
                 }
             }
         }
-        stage('install checkov') {
-            steps {
-               script {
-                sh '''
-                    sudo apt update
-                    sudo apt install python3-pip -y
-                    sudo pip install --upgrade pip
-                    sudo pip install checkov
-                    '''
-               }
-            }
-        }
-        stage ('run checkov') {
+
+        stage('Run checkov') {
             steps {
                 script {
-                    sh '''
-                          checkov -d . -o json
-                          '''
+                    sh 'checkov -d . -o json'
                 }
             }
         }
@@ -61,6 +64,30 @@ pipeline {
                 script {
                     sh 'docker ps'
                 }
+            }
+        }
+    }
+
+    post {
+        success {
+            withCredentials([string(credentialsId: 'slack', variable: 'SLACK_WEBHOOK_URL')]) {
+                sh """
+                    curl -X POST --data-urlencode 'payload={
+                        "channel": "${SLACK_CHANNEL}",
+                        "text": "✅ Build succeeded! All stages passed.",
+                    }' $SLACK_WEBHOOK_URL
+                """
+            }
+        }
+
+        failure {
+            withCredentials([string(credentialsId: 'slack', variable: 'SLACK_WEBHOOK_URL')]) {
+                sh """
+                    curl -X POST --data-urlencode 'payload={
+                        "channel": "${SLACK_CHANNEL}",
+                        "text": "❌ Build failed! Check the Jenkins logs.",
+                    }' $SLACK_WEBHOOK_URL
+                """
             }
         }
     }
