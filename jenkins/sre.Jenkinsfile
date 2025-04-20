@@ -67,7 +67,6 @@ pipeline {
             }
         }
     }
-
     post {
     success {
         slackSend(channel: '# all-sre', color: 'good', message: " Pipeline succeeded.")
