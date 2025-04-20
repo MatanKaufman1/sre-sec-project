@@ -70,21 +70,10 @@ pipeline {
 
     post {
     success {
-        slackSend (
-            channel: '#succeeded-build',
-            message: "✅ pipeline succeeded.",
-            tokenCredentialId: 'slack',   // Make sure this is the same credential ID as used in Freestyle
-            teamDomain: 'sre-wcs3027'      // Optional if you configured it globally in Jenkins
-        )
+        slackSend(channel: '# all-sre', color: 'good', message: " Pipeline succeeded.")
     }
     failure {
-        slackSend (
-            channel: '#devops-alerts',
-            message: "❌ pipeline failed.",
-            tokenCredentialId: 'slack',
-            teamDomain: 'sre-wcs3027'
-        )
+        slackSend(channel: '# all-sre', color: 'danger', message: " Pipeline failed.")
     }
 }
 }
-
