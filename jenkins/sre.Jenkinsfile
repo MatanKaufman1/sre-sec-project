@@ -39,7 +39,8 @@ pipeline {
             steps {
                 script {
                     sh '''
-                          echo this run checkov
+                          cd prometheus-grafana
+                          checkov -d . -o json
                           '''
                 }
             }
