@@ -44,9 +44,11 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - ./alertmanager:/etc/alertmanager
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
+    environment:
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
     networks:
       - monitoring
 
