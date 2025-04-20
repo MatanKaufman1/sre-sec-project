@@ -9,6 +9,9 @@ This project provides an automated monitoring infrastructure setup using Prometh
 3. [Pipeline Flow Overview](#pipeline-flow-overview)
 4. [Installation & Setup](#installation--setup)
 5. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
+6. [Monitoring Components](#monitoring-components)
+7. [Alert Rules Configuration](#alert-rules-configuration)
+8. [Data Collection Flow](#data-collection-flow)
 
 ## Project Overview
 
@@ -185,3 +188,108 @@ To use this dashboard, import it into Grafana by following these steps:
    docker restart grafana
    ```
 ---
+## Monitoring Components
+
+This project collects metrics from two primary sources: the host system (via Node Exporter) and Jenkins. These metrics are stored in Prometheus and visualized in Grafana dashboards.
+Host Monitoring (Node Exporter)
+
+Node Exporter collects system-level metrics from the Linux host, including:
+CPU Metrics
+
+    CPU usage by mode (user, system, idle, etc.)
+
+    Load averages
+
+    Process counts and states
+
+Memory Metrics
+
+    Total and available memory
+
+    Swap utilization
+
+    Memory allocation details
+
+    Cache usage
+
+Disk Metrics
+
+    Disk space (used/free)
+
+    Disk I/O operations
+
+    Latency and inode usage
+
+Network Metrics
+
+    Traffic (bytes in/out)
+
+    Packet rates
+
+    Errors and drops
+
+    Connection states
+
+System Metrics
+
+    Uptime
+
+    Load
+
+    File descriptor usage
+
+    Available entropy
+
+🛠️ Jenkins Monitoring
+
+Jenkins metrics are collected using the Prometheus plugin for Jenkins and include:
+Build Metrics
+
+    Build durations
+
+    Build result rates (success/failure)
+
+    Build queue time
+
+    Number of builds per status
+
+Jenkins Health
+
+    Executor status
+
+    Plugin health
+
+    Resource usage by Jenkins
+
+CloudBees Disk Usage (via plugin)
+
+    Workspace disk usage
+
+    Artifact disk usage
+
+    Total Jenkins disk consumption
+
+Alert Rules Configuration
+
+The monitoring stack includes pre-configured alert rules in Prometheus:
+Alert Name	Condition	Severity
+NodeExporterDown	Node Exporter is unreachable for 1 minute	Critical
+JenkinsJobFailure	Any Jenkins job fails	High
+HighCPU	CPU usage > 90% for more than 1 minute	Warning
+
+All alerts are routed to the #all-sre Slack channel using AlertManager.
+Data Collection Flow
+
+Here’s how the monitoring pipeline works:
+
+    Node Exporter (port 9100) collects host metrics every 10s.
+
+    Jenkins Prometheus plugin exposes metrics at /prometheus.
+
+    Prometheus (port 9090) scrapes data from Node Exporter & Jenkins.
+
+    AlertManager (port 9093) handles alerts and sends Slack notifications.
+
+    Grafana (port 3000) displays real-time dashboards.
+
+All services run in Docker containers within a shared Docker network, ensuring portability and consistency across environments.
