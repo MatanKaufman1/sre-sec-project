@@ -7,8 +7,8 @@ It includes automatic deployment, Jenkins monitoring, alert management, and Slac
 
 The project is divided into two main components:
 
-Jenkins: This part manages your CI/CD pipeline using Docker.
-Prometheus-Grafana: This section contains configurations for Prometheus, Grafana, and AlertManager.
+- Jenkins: This part manages your CI/CD pipeline using Docker.
+- Prometheus-Grafana: This section contains configurations for Prometheus, Grafana, and AlertManager.
 
 Project Overview
 This solution automates the setup and monitoring of infrastructure components with a focus on:
@@ -43,10 +43,7 @@ Before setting up, ensure that you have the following installed:
 
 - **Docker**: To run containers for Prometheus, Grafana, Jenkins, and Alertmanager.
 - **Docker Compose**: For easier management of multi-container Docker applications.
-- **Grafana**: For visualization of Prometheus metrics.
-- **Prometheus**: For collecting and storing metrics from Jenkins, the VM host, and other services.
 - **Jenkins**: For running CI/CD pipelines and exposing Prometheus metrics.
-- **Alertmanager**: For alerting based on Prometheus rules (with Slack integration).
 - **Slack Webhook URL**: For Slack notifications when an alert is triggered.
 
 ## Architecture Overview
@@ -57,15 +54,7 @@ The setup includes the following services:
 - **Grafana**: Visualizes the collected metrics through dashboards.
 - **Jenkins**: Exposes metrics for Prometheus to scrape.
 - **Alertmanager**: Triggers Slack notifications based on alerts defined in Prometheus.
-- **VM Host Monitoring**: Monitors the VM host itself using **Node Exporter** to collect system-level metrics (CPU, memory, disk, network usage, etc.).
-
-### Docker Networks
-
-Each service is connected to a dedicated Docker network to allow for easy communication between Prometheus, Grafana, Jenkins, and Alertmanager.
-
-- `prometheus-grafana_monitoring`
-- `jenkins_monitoring`
-- `alertmanager_network`
+- **Node Exporter**: Collects system-level metrics (CPU, memory, disk, network) from the VM host for Prometheus to scrape.
 
 ## Setup
 
