@@ -18,7 +18,7 @@ groups:
     rules:
       - alert: JenkinsJobFailure
         expr: >
-          jenkins_job_last_build_duration_seconds{job="jenkins", result="FAILURE"} > 0
+          jenkins_job_last_build_duration_seconds{result="FAILURE"} > 0
         for: 1m
         labels:
           severity: high
