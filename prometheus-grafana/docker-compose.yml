@@ -26,7 +26,7 @@ services:
     restart: always
     volumes:
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./grafana/provisioning/datasources/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
     networks:
       - monitoring
 
