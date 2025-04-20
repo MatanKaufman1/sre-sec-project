@@ -4,12 +4,7 @@
 This project provides an automated monitoring infrastructure setup using Prometheus and Grafana with Jenkins CI/CD integration.
 It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
 ## Project Structure
-
-The project is divided into two main components:
-
-- Jenkins: This part manages your CI/CD pipeline using Docker.
-- Prometheus-Grafana: This section contains configurations for Prometheus, Grafana, and AlertManager.
-
+---
 Project Overview
 This solution automates the setup and monitoring of infrastructure components with a focus on:
 
@@ -18,7 +13,25 @@ Jenkins monitoring using Prometheus and CloudBees disk usage plugins
 Real-time alerts delivered to Slack
 Configuration validation through CI/CD pipeline
 
+The project is divided into three main components:
+
+    Vagrant:
+
+        Provisions the Linux VM to serve as the host environment.
+        Ensures a consistent, repeatable environment for Jenkins, Prometheus, and Grafana.
+
+    Jenkins:
+
+        Manages your CI/CD pipeline using Docker.
+        Automates the setup of monitoring tools (Prometheus, Grafana, AlertManager, Node Exporter).
+
+    Prometheus-Grafana:
+
+        Contains configurations for Prometheus, Grafana, AlertManager, and dashboards.
+        Provides monitoring, visualization, and alerting.
+
 ---
+## Projet structure:
 
     ├── jenkins
     │   ├── docker-compose.yml
@@ -40,21 +53,11 @@ Configuration validation through CI/CD pipeline
 ## Prerequisites
 
 Before setting up, ensure that you have the following installed:
-
+- **Vgrant: to configure and run the vm (linux-ubuntu:22.04 image)
 - **Docker**: To run containers for Prometheus, Grafana, Jenkins, and Alertmanager.
 - **Docker Compose**: For easier management of multi-container Docker applications.
-- **Jenkins**: For running CI/CD pipelines and exposing Prometheus metrics.
 - **Slack Webhook URL**: For Slack notifications when an alert is triggered.
 
-## Architecture Overview
-
-The setup includes the following services:
-
-- **Prometheus**: Collects metrics from Jenkins, the VM host, and other services.
-- **Grafana**: Visualizes the collected metrics through dashboards.
-- **Jenkins**: Exposes metrics for Prometheus to scrape.
-- **Alertmanager**: Triggers Slack notifications based on alerts defined in Prometheus.
-- **Node Exporter**: Collects system-level metrics (CPU, memory, disk, network) from the VM host for Prometheus to scrape.
 
 ## Setup
 
