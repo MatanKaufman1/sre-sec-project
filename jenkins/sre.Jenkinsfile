@@ -36,7 +36,7 @@ pipeline {
         stage('Run checkov') {
             steps {
                 script {
-                sh 'echo test'
+                sh 'checkov -d . -o json'
                 }
             }
         }
