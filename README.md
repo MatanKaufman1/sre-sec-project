@@ -1,5 +1,5 @@
 
-# Prometheus, Grafana, Jenkins Integration with Host Monitoring and Slack Alerts
+# Prometheus, Grafana, Jenkins Integration for Host and Jenkins Monitoring
 
 This project provides an automated monitoring infrastructure setup using Prometheus and Grafana with Jenkins CI/CD integration.
 It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
@@ -49,117 +49,48 @@ The project is divided into three main components:
     └── vagrant
         └── Vagrantfile
 ---
-
+# ⚙️ Installation & Setup
 ## Prerequisites
 
 Before setting up, ensure that you have the following installed:
-- **Vgrant: to configure and run the vm (linux-ubuntu:22.04 image)
+- **Vgrant & Virtualbox**: to configure and run the vm (linux-ubuntu:22.04 image)
 - **Docker**: To run containers for Prometheus, Grafana, Jenkins, and Alertmanager.
 - **Docker Compose**: For easier management of multi-container Docker applications.
 - **Slack Webhook URL**: For Slack notifications when an alert is triggered.
 
+🚀 Steps to Get Started
 
-## Setup
+ Clone the repository:
 
-### Step 1: Docker Compose Setup
+    git clone https://github.com/your-username/your-repo-name.git
+    cd your-repo-name
 
-We use Docker Compose to manage the services. Ensure you have `docker-compose.yml` configured correctly.
+Start the VM with Vagrant:
 
-Example for `docker-compose.yml`:
+    cd vagrant
+    vagrant up
 
-```yaml
-version: '3'
+SSH into the VM:
 
-services:
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    networks:
-      - prometheus-grafana_monitoring
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    vagrant ssh
 
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    networks:
-      - prometheus-grafana_monitoring
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    volumes:
-      - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/dashboards:/etc/grafana/dashboards
+create an jenkins directory:
+    
+    mkdir jenkins
 
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    networks:
-      - jenkins_monitoring
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    environment:
-      - JENKINS_OPTS="--httpPort=8080"
-    volumes:
-      - jenkins_home:/var/jenkins_home
+Copy the docker-compose.yml file from the shared folder:
 
-  alertmanager:
-    image: prom/alertmanager
-    container_name: alertmanager
-    networks:
-      - alertmanager_network
-    ports:
-      - "9093:9093"
-    volumes:
-      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+Assuming your project is synced into /vagrant (Vagrant’s default):
 
-  node-exporter:
-    image: prom/node-exporter
-    container_name: node-exporter
-    networks:
-      - prometheus-grafana_monitoring
-    ports:
-      - "9100:9100"
+    cp /vagrant/jenkins/docker-compose.yml ~/jenkins/
 
-networks:
-  prometheus-grafana_monitoring:
-    driver: bridge
-  jenkins_monitoring:
-    driver: bridge
-  alertmanager_network:
-    driver: bridge
+Run Jenkins inside the VM:
 
-volumes:
-  jenkins_home:
-```
+    cd ~/jenkins
+    docker-compose up -d
 
-### Step 2: Configure Prometheus
 
-Prometheus configuration (`prometheus.yml`) defines the scrape targets for monitoring Jenkins, the VM host, and other services.
 
-Example configuration for Prometheus:
-
-```yaml
-global:
-  scrape_interval: 15s
-
-scrape_configs:
-  - job_name: 'jenkins'
-    static_configs:
-      - targets: ['jenkins:8080']
-    metrics_path: '/prometheus'
-    scheme: 'http'
-
-  - job_name: 'node_exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
-```
-
-Ensure that your Prometheus service is correctly configured to scrape the desired endpoints.
 
 ### Step 3: Configure Grafana
 
