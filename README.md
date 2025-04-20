@@ -1,4 +1,4 @@
-# Prometheus, Grafana, Jenkins Integration for Host and Jenkins Monitoring
+# Prometheus & Grafana with Jenkins Integration for Automated Monitoring
 
 This project provides an automated monitoring infrastructure setup using Prometheus and Grafana with Jenkins CI/CD integration. It includes automatic deployment, Jenkins monitoring, alert management, and Slack notifications.
 
