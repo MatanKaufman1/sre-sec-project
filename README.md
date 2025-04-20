@@ -7,9 +7,9 @@ This project provides an automated monitoring infrastructure setup using Prometh
 1. [Project Overview](#project-overview)
 2. [Project Structure](#project-structure)
 3. [Pipeline Flow Overview](#pipeline-flow-overview)
-4. [Installation & Setup](#installation-setup)
+4. [Installation & Setup](#installation--setup)
 5. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
-
+6. 
 ## Project Overview
 
 This solution automates the setup and monitoring of infrastructure components with a focus on:
