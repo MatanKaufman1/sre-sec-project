@@ -54,13 +54,6 @@ The project is divided into three main components:
 └── vagrant
     └── Vagrantfile
 ```
-## Table of Contents
-
-1. [Pipeline Flow Overview](#pipeline-flow-overview)
-2. [Installation & Setup](#installation--setup)
-3. [Creating Dashboards in Grafana](#creating-dashboards-in-grafana)
-
----
 
 ## Pipeline Flow Overview
 
