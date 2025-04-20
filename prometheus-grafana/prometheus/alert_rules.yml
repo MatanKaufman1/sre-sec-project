@@ -1,3 +1,4 @@
+---
 groups:
   - name: node_exporter_alerts
     rules:
@@ -8,13 +9,13 @@ groups:
           severity: critical
         annotations:
           summary: "Node Exporter is down on {{ $labels.instance }}"
-          description: "No metrics received from Node Exporter on {{ $labels.instance }} for the last 1 minute."
+          description: "No metrics received from Node Exporter on {{ $labels.instance }}"
 
   - name: jenkins_alerts
     rules:
-        - alert: JenkinsJobFailure
-          expr: jenkins_job_last_build_duration_seconds{job="jenkins", result="FAILURE"} > 0
-          for: 1m
-          annotations:
-            summary: "Jenkins job has failed!"
-            description: "The job {{ $labels.job }} has failed. Check the Jenkins logs for details."
+      - alert: JenkinsJobFailure
+        expr: jenkins_job_last_build_duration_seconds{job="jenkins", result="FAILURE"} > 0
+        for: 1m
+        annotations:
+          summary: "Jenkins job has failed!"
+          description: "The job {{ $labels.job }} has failed. Check logs for details."
