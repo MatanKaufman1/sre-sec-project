@@ -27,10 +27,10 @@ pipeline {
             steps {
                script {
                 sh '''
-                    apt update
-                    apt install python3-pip -y
-                    pip install --upgrade pip
-                    pip install checkov
+                    sudo apt update
+                    sudo apt install python3-pip -y
+                    sudo pip install --upgrade pip
+                    sudo pip install checkov
                     '''
                }
             }
