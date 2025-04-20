@@ -15,20 +15,20 @@ Configuration validation through CI/CD pipeline
 
 The project is divided into three main components:
 
-    Vagrant:
+Vagrant:
 
-        Provisions the Linux VM to serve as the host environment.
-        Ensures a consistent, repeatable environment for Jenkins, Prometheus, and Grafana.
+    Provisions the Linux VM to serve as the host environment.
+    Ensures a consistent, repeatable environment for Jenkins, Prometheus, and Grafana.
 
-    Jenkins:
+Jenkins:
 
-        Manages your CI/CD pipeline using Docker.
-        Automates the setup of monitoring tools (Prometheus, Grafana, AlertManager, Node Exporter).
+    Manages your CI/CD pipeline using Docker.
+    Automates the setup of monitoring tools (Prometheus, Grafana, AlertManager, Node Exporter).
 
-    Prometheus-Grafana:
+Prometheus-Grafana:
 
-        Contains configurations for Prometheus, Grafana, AlertManager, and dashboards.
-        Provides monitoring, visualization, and alerting.
+    Contains configurations for Prometheus, Grafana, AlertManager, and dashboards.
+    Provides monitoring, visualization, and alerting.
 
 ---
 ## Projet structure:
