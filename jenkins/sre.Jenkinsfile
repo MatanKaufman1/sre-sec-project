@@ -69,26 +69,11 @@ pipeline {
     }
 
     post {
-        success {
-            withCredentials([string(credentialsId: 'slack', variable: 'SLACK_WEBHOOK_URL')]) {
-                sh """
-                    curl -X POST --data-urlencode 'payload={
-                        "channel": "${SLACK_CHANNEL}",
-                        "text": "✅ Build succeeded! All stages passed.",
-                    }' $SLACK_WEBHOOK_URL
-                """
-            }
-        }
-
-        failure {
-            withCredentials([string(credentialsId: 'slack', variable: 'SLACK_WEBHOOK_URL')]) {
-                sh """
-                    curl -X POST --data-urlencode 'payload={
-                        "channel": "${SLACK_CHANNEL}",
-                        "text": "❌ Build failed! Check the Jenkins logs.",
-                    }' $SLACK_WEBHOOK_URL
-                """
-            }
-        }
+    success {
+        slackSend(channel: '#succeeded-build', color: 'good', message: "✅ Build #${env.BUILD_NUMBER} succeeded.")
     }
+    failure {
+        slackSend(channel: '#devops-alerts', color: 'danger', message: "❌ Build #${env.BUILD_NUMBER} failed.")
+    }
+}
 }
