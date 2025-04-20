@@ -2,11 +2,6 @@ pipeline {
     agent {
         label 'runner'
     }
-
-    environment {
-        SLACK_CHANNEL = '#all-sre'
-    }
-
     stages {
         stage('Install yamlLinter') {
             steps {
@@ -18,7 +13,6 @@ pipeline {
                 }
             }
         }
-
         stage('Check yaml files') {
             steps {
                 script {
@@ -26,7 +20,6 @@ pipeline {
                 }
             }
         }
-
         stage('Install checkov') {
             steps {
                 script {
