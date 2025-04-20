@@ -19,22 +19,22 @@ Real-time alerts delivered to Slack
 Configuration validation through CI/CD pipeline
 
 ---
-.
-├── jenkins
-│   ├── docker-compose.yml
-│   └── sre.Jenkinsfile
-├── prometheus-grafana
-│   ├── alertmanager
-│   │   └── alertmanager.yml
-│   ├── docker-compose.yml
-│   ├── grafana
-│   │   └── provisioning
-│   └── prometheus
-│       ├── alert_rules.yml
-│       └── prometheus.yml
-├── README.md
-└── vagrant
-    └── Vagrantfile
+
+    ├── jenkins
+    │   ├── docker-compose.yml
+    │   └── sre.Jenkinsfile
+    ├── prometheus-grafana
+    │   ├── alertmanager
+    │   │   └── alertmanager.yml
+    │   ├── docker-compose.yml
+    │   ├── grafana
+    │   │   └── provisioning
+    │   └── prometheus
+    │       ├── alert_rules.yml
+    │       └── prometheus.yml
+    ├── README.md
+    └── vagrant
+        └── Vagrantfile
 ---
 
 ## Prerequisites
