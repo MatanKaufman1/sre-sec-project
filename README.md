@@ -48,6 +48,44 @@ The project is divided into three main components:
     └── Vagrantfile
 ```
 
+## Pipeline Flow Overview
+
+This project includes a CI/CD pipeline managed by Jenkins to automate the setup and monitoring of infrastructure components. The pipeline is designed to automate several tasks, including YAML linting, security checks, container setup, and deployment of Prometheus, Grafana, and Node Exporter. Below is the flow of the pipeline:
+
+ Install YAML Linter:
+
+   In this stage, the pipeline installs yamllint, a tool used to lint YAML files in the repository. This ensures that the YAML configurations are properly formatted and follow best practices.
+
+ Check YAML Files:
+
+   After installing yamllint, the pipeline proceeds to lint all the YAML files in the repository. This step helps ensure that no syntax errors exist in configuration files like Docker Compose and Kubernetes manifests.
+
+ Install Checkov:
+
+   The pipeline installs Checkov, a static code analysis tool for Terraform, Kubernetes, and other cloud-related configuration files. Checkov helps identify security misconfigurations in infrastructure-as-code files.
+
+ Run Checkov:
+
+   In this stage, Checkov is executed to analyze all the files in the repository and output a security report. If any issues or misconfigurations are found, the pipeline will provide a detailed summary.
+
+ Install Prometheus, Grafana, and Node Exporter:
+
+   This step brings up the monitoring stack, including Prometheus, Grafana, and Node Exporter, using Docker Compose. It ensures that the monitoring services are up and running, collecting metrics from the Jenkins          instance and the VM host.
+
+ Check Running Containers:
+
+   The pipeline verifies that all the necessary containers (Prometheus, Grafana, Node Exporter) are running by executing the docker ps command. This step ensures that the services are properly started and available.
+
+Post-Pipeline Notifications
+
+After the pipeline execution:
+
+ Success: If the pipeline completes successfully, a notification is sent to the Slack channel (#all-sre) with a "success" status.
+
+ Failure: If any step fails, a "failure" notification is sent to the same Slack channel, indicating the issue in the pipeline.
+
+---
+
 ## ⚙️ Installation & Setup
 
 ### Prerequisites
