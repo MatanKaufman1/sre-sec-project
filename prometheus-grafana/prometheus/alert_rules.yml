@@ -8,14 +8,23 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "Node Exporter is down on {{ $labels.instance }}"
-          description: "No metrics received from Node Exporter on {{ $labels.instance }}"
+          summary: >
+            Node Exporter is down on {{ $labels.instance }}
+          description: >
+            No metrics received from Node Exporter on
+            {{ $labels.instance }}
 
   - name: jenkins_alerts
     rules:
       - alert: JenkinsJobFailure
-        expr: jenkins_job_last_build_duration_seconds{job="jenkins", result="FAILURE"} > 0
+        expr: >
+          jenkins_job_last_build_duration_seconds{job="jenkins", result="FAILURE"} > 0
         for: 1m
+        labels:
+          severity: high
         annotations:
-          summary: "Jenkins job has failed!"
-          description: "The job {{ $labels.job }} has failed. Check logs for details."
+          summary: >
+            Jenkins job has failed!
+          description: >
+            The job {{ $labels.job }} has failed.
+            Check logs for details.
