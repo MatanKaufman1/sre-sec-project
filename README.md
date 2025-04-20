@@ -114,7 +114,7 @@ You can use a pre-built Node Exporter Full dashboard from Grafana's community re
 This dashboard provides comprehensive system monitoring, including CPU, memory, disk, and network usage metrics.
 To use this dashboard, import it into Grafana by following these steps:
 
-    Visit the Node Exporter Full Dashboard on Grafana.com.
+    Visit the: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
     
 Download the file and paste it:
 
