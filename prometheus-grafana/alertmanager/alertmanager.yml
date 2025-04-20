@@ -4,7 +4,8 @@ global:
 receivers:
   - name: 'slack-notifications'
     slack_configs:
-      - api_url: 'https://hooks.slack.com/services/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'
+      - api_url:
+          'https://hooks.slack.com/services/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'
         channel: '#all-sre'
         send_resolved: true
 
