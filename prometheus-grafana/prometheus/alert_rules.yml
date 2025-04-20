@@ -28,5 +28,3 @@ groups:
           description: >
             The job {{ $labels.job }} has failed.
             Check logs for details.
-
-cription: "CPU usage is above 90% for more than 1 minute."
